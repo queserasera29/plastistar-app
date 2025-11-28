@@ -42,5 +42,25 @@
             <li>Points can be used as recognition in your institution or eco-clubs.</li>
         </ul>
     </div>
+<div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="{{ url_for('categories') }}"
+       style="padding:0.6rem 1.1rem; border-radius:999px; border:none;
+              background:var(--primary); color:#fff; font-size:0.9rem;
+              font-weight:500; text-decoration:none;">
+        Upload another article
+    </a>
+    <a href="{{ url_for('history') }}"
+       style="padding:0.6rem 1.1rem; border-radius:999px;
+              border:1px solid var(--primary); font-size:0.9rem;
+              font-weight:500; color:var(--primary-dark); text-decoration:none;">
+        View full history
+    </a>
+    <a href="{{ url_for('home') }}"
+       style="padding:0.6rem 1.1rem; border-radius:999px;
+              border:1px solid var(--primary); font-size:0.9rem;
+              font-weight:500; color:var(--primary-dark); text-decoration:none;">
+        Return to homepage
+    </a>
+</div>
 </section>
 {% endblock %}

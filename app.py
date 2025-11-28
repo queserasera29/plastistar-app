@@ -2,6 +2,29 @@ import os
 import uuid
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import qrcode
+import os
+import uuid
+import csv
+from datetime import datetime
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+import qrcode
+
+app = Flask(__name__)
+
+# SECRET KEY FOR SESSION
+app.secret_key = "change_this_to_something_random"
+
+# FOLDERS
+UPLOAD_FOLDER = os.path.join("static", "uploads")
+QR_FOLDER = os.path.join("static", "qr")
+DATA_FOLDER = os.path.join("data")  # NEW: for history file
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(QR_FOLDER, exist_ok=True)
+os.makedirs(DATA_FOLDER, exist_ok=True)  # NEW
+
+HISTORY_FILE = os.path.join(DATA_FOLDER, "waste_history.csv")  # NEW
+
 
 app = Flask(__name__)
 
@@ -118,15 +141,45 @@ def categories():
             }
         )
 
+        # NEW: Append to history CSV so data is saved
+        try:
+            file_exists = os.path.exists(HISTORY_FILE)
+            with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow(
+                        [
+                            "timestamp",
+                            "item_id",
+                            "user_email",
+                            "category",
+                            "image_filename",
+                            "qr_filename",
+                            "points",
+                        ]
+                    )
+                writer.writerow(
+                    [
+                        datetime.now().isoformat(timespec="seconds"),
+                        item_id,
+                        session["user_email"],
+                        category,
+                        image_filename,
+                        qr_filename,
+                        points,
+                    ]
+                )
+        except Exception as e:
+            print("Failed to write to history file:", e)
+
         # Update user's total points in session
         session["total_points"] = session.get("total_points", 0) + points
 
         flash("Plastic added successfully! QR code generated.", "success")
         return redirect(url_for("wallet"))
 
+    # GET request → show categories page
     return render_template("categories.html", category_points=CATEGORY_POINTS)
-
-
 @app.route("/wallet")
 def wallet():
     """
@@ -155,6 +208,37 @@ def wallet():
         "wallet.html",
         user_name=session.get("user_name"),
         total_points=total_points,
+        items=user_items,
+    )
+@app.route("/history")
+def history():
+    """
+    PAGE 4: HISTORY
+    Shows all past items for this user in a table:
+    - Category
+    - Uploaded image
+    - QR code
+    - Points
+    - Timestamp
+    """
+    if "user_email" not in session:
+        return redirect(url_for("register"))
+
+    user_email = session["user_email"]
+
+    # Collect items from in-memory list
+    user_items = [item for item in waste_items if item["user_email"] == user_email]
+
+    # Optionally, you could also read from CSV here if you want cross-restart history.
+    # For now, we just use in-memory + the CSV as backup storage.
+
+    # Add 'stars' field again for consistency (same as wallet)
+    for item in user_items:
+        item["stars"] = "★" * item["points"]
+
+    return render_template(
+        "history.html",
+        user_name=session.get("user_name"),
         items=user_items,
     )
 

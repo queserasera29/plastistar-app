@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}PlastiStar · History{% endblock %}
+
+{% block content %}
+<section style="max-width: 900px; margin: 0 auto;">
+    <h1 style="font-size:1.6rem; margin-bottom:0.4rem; color:var(--primary-dark);">
+        Activity History
+    </h1>
+    <p style="margin:0 0 1rem; font-size:0.9rem;">
+        {% if user_name %}
+            Hello, <strong>{{ user_name }}</strong> – here is a summary of the plastic items you've logged so far.
+        {% else %}
+            Here is a summary of your logged plastic items.
+        {% endif %}
+    </p>
+
+    {% if items %}
+        <div style="overflow-x:auto;">
+            <table style="border-collapse:collapse; width:100%; font-size:0.88rem;">
+                <thead>
+                <tr style="background:rgba(47,125,50,0.08);">
+                    <th style="text-align:left; padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">Category</th>
+                    <th style="text-align:left; padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">Uploaded Image</th>
+                    <th style="text-align:left; padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">QR Code</th>
+                    <th style="text-align:left; padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td style="padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">
+                            {{ item.category.replace("_", " ").title() }}
+                        </td>
+                        <td style="padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">
+                            <img src="{{ url_for('static', filename='uploads/' + item.image_filename) }}"
+                                 alt="Uploaded image"
+                                 style="max-height:60px; border-radius:0.4rem; border:1px solid var(--border-soft);">
+                        </td>
+                        <td style="padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">
+                            <img src="{{ url_for('static', filename='qr/' + item.qr_filename) }}"
+                                 alt="QR code"
+                                 style="max-height:60px; border-radius:0.4rem; border:1px solid var(--border-soft);">
+                        </td>
+                        <td style="padding:0.45rem 0.5rem; border-bottom:1px solid var(--border-soft);">
+                            {{ item.points }} pts
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p style="margin-top:0.8rem; font-size:0.9rem;">
+            You haven't logged any items yet. Start by adding a plastic item from the
+            <a href="{{ url_for('categories') }}">Categories</a> page.
+        </p>
+    {% endif %}
+
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <a href="{{ url_for('categories') }}"
+           style="padding:0.6rem 1.1rem; border-radius:999px; border:none;
+                  background:var(--primary); color:#fff; font-size:0.9rem;
+                  font-weight:500; text-decoration:none;">
+            Upload another article
+        </a>
+        <a href="{{ url_for('home') }}"
+           style="padding:0.6rem 1.1rem; border-radius:999px;
+                  border:1px solid var(--primary); font-size:0.9rem;
+                  font-weight:500; color:var(--primary-dark); text-decoration:none;">
+            Return to homepage
+        </a>
+    </div>
+</section>
+{% endblock %}
