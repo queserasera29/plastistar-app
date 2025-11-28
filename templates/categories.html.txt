@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Scan & Categorize Plastic ♻️</h2>
+  <p style="font-size:0.85rem;">
+    Choose the correct plastic type, then tap to click a picture of the item.
+    A unique QR code will be generated and star points added to your wallet.
+  </p>
+
+  <form method="post" enctype="multipart/form-data">
+    <h3 style="font-size:1rem;">1. Select plastic type</h3>
+
+    <div class="category-grid">
+      <label class="category-tile">
+        <input type="radio" name="category" value="plastic_bottle" required>
+        <div><strong>Plastic Bottle</strong></div>
+        <div>{{ category_points["plastic_bottle"] }}/10 ⭐</div>
+      </label>
+
+      <label class="category-tile">
+        <input type="radio" name="category" value="plastic_wrapper">
+        <div><strong>Choco / Plastic Wrapper</strong></div>
+        <div>{{ category_points["plastic_wrapper"] }}/10 ⭐</div>
+      </label>
+
+      <label class="category-tile">
+        <input type="radio" name="category" value="plastic_can">
+        <div><strong>Plastic Can</strong></div>
+        <div>{{ category_points["plastic_can"] }}/10 ⭐</div>
+      </label>
+
+      <label class="category-tile">
+        <input type="radio" name="category" value="plastic_bag">
+        <div><strong>Plastic Bag</strong></div>
+        <div>{{ category_points["plastic_bag"] }}/10 ⭐</div>
+      </label>
+
+      <label class="category-tile">
+        <input type="radio" name="category" value="other_plastic">
+        <div><strong>Other Plastic</strong></div>
+        <div>{{ category_points["other_plastic"] }}/10 ⭐</div>
+      </label>
+    </div>
+
+    <h3 style="font-size:1rem;margin-top:16px;">2. Capture / upload image</h3>
+    <p style="font-size:0.8rem;margin-bottom:6px;">
+      On mobile, this will open your camera automatically.
+    </p>
+    <input type="file" name="photo" accept="image/*" capture="environment" required>
+
+    <button class="btn" type="submit">Scan & Generate QR</button>
+  </form>
+</div>
+{% endblock %}

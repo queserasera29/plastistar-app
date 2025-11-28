@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Welcome to PlastiStar 🌱</h2>
+  <p style="font-size:0.9rem;">
+    Enter your details to start collecting star points for recycling plastic.
+  </p>
+
+  <form method="post">
+    <label for="name">Name</label>
+    <input id="name" name="name" placeholder="Your full name" required>
+
+    <label for="phone">Phone Number</label>
+    <input id="phone" name="phone" placeholder="10-digit number" required>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="you@example.com" required>
+
+    <button class="btn" type="submit">Continue</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>{{ user_name }}'s Star Wallet ⭐</h2>
+  <p style="font-size:0.9rem;">
+    Total star points collected so far:
+    <strong>{{ total_points }}</strong>
+  </p>
+  <p style="font-size:0.8rem;color:#4a5568;">
+    Collect more plastic waste to grow your star balance!
+  </p>
+</div>
+
+<div class="card">
+  <h3 style="font-size:1rem;">Your scanned items</h3>
+
+  {% if items %}
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Photo</th>
+          <th>QR Code</th>
+          <th>Stars</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in items %}
+        <tr>
+          <td>
+            {% if item.category == "plastic_bottle" %}
+              Plastic Bottle
+            {% elif item.category == "plastic_wrapper" %}
+              Wrapper
+            {% elif item.category == "plastic_can" %}
+              Plastic Can
+            {% elif item.category == "plastic_bag" %}
+              Plastic Bag
+            {% else %}
+              Other Plastic
+            {% endif %}
+          </td>
+          <td>
+            <img class="thumb"
+                 src="{{ url_for('static', filename='uploads/' ~ item.image_filename) }}"
+                 alt="item image">
+          </td>
+          <td>
+            <img class="thumb"
+                 src="{{ url_for('static', filename='qr/' ~ item.qr_filename) }}"
+                 alt="QR code">
+          </td>
+          <td>
+            {{ item.points }} pts<br>
+            <span style="font-size:0.9rem;">{{ item.stars }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p style="font-size:0.85rem;">You haven't scanned any plastic yet. Go to the Scan page to start.</p>
+  {% endif %}
+</div>
+{% endblock %}
