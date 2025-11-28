@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}PlastiStar · Wallet{% endblock %}
+
+{% block content %}
+<section style="max-width: 640px; margin: 0 auto;">
+    <h1 style="font-size: 1.6rem; margin-bottom: 0.4rem; color: var(--primary-dark);">
+        My PlastiStar Wallet
+    </h1>
+    <p style="margin: 0 0 1.25rem; font-size: 0.9rem; line-height: 1.6;">
+        Track your eco-actions as reward points. Every plastic item you sort correctly can
+        be logged and converted into PlastiStar points.
+    </p>
+
+    <div style="background: var(--card-bg); border-radius: 1rem; padding: 1.1rem 1.25rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-soft);
+                display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+        <div>
+            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #4f6f52;">
+                Total Reward Points
+            </div>
+            <div style="font-size: 2.1rem; font-weight: 600; color: var(--primary-dark);">
+                {{ reward_points }}
+            </div>
+            <div style="font-size: 0.8rem; color: #4f6f52;">
+                Earn more points by sorting plastics correctly using PlastiStar.
+            </div>
+        </div>
+        <div style="text-align: right; font-size: 0.8rem;">
+            <div class="pill">
+                <span class="pill-dot"></span>
+                <span>Eco-score growing</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; font-size: 0.85rem;">
+        <h2 style="font-size: 1rem; margin-bottom: 0.4rem;">How reward points work</h2>
+        <ul style="margin-top: 0.25rem; padding-left: 1.1rem;">
+            <li>Log correctly identified plastic categories to earn points.</li>
+            <li>Use PlastiStar in awareness drives, classroom activities, or community clean-ups.</li>
+            <li>Points can be used as recognition in your institution or eco-clubs.</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

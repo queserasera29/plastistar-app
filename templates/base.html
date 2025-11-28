@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PlastiStar{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font (optional, looks nicer) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-light: #f3f8f2;
+            --bg-accent: #d9f2e3;
+            --primary: #2f7d32;      /* deep leaf green */
+            --primary-dark: #205624; /* darker green */
+            --accent: #f4a261;       /* warm earthy orange */
+            --text-main: #163020;    /* deep earthy text */
+            --card-bg: #ffffff;
+            --border-soft: #d1e3d3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-accent));
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Layout */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-soft);
+            padding: 0.75rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, #ffffff, var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-text-main {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+        }
+
+        .brand-text-sub {
+            font-size: 0.8rem;
+            color: #4f6f52;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #355e3b;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--primary);
+            background-color: rgba(47, 125, 50, 0.08);
+        }
+
+        .nav-link-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .nav-link-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        main {
+            flex: 1;
+            padding: 1.75rem 1.5rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-soft);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1.75rem;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            color: #4f6f52;
+        }
+
+        .footer-highlight {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Utility */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-radius: 999px;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.75rem;
+            background: rgba(47, 125, 50, 0.06);
+            color: var(--primary-dark);
+        }
+
+        .pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--accent);
+        }
+
+        @media (max-width: 720px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                align-self: stretch;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+            main {
+                padding: 1.25rem 1rem 1rem;
+            }
+        }
+    </style>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<div class="page-wrapper">
+    <header>
+        <div class="brand">
+            <!-- Simple, nature-inspired logo -->
+            <div class="logo-circle">♻</div>
+            <div>
+                <div class="brand-text-main">PlastiStar</div>
+                <div class="brand-text-sub">Sort Smart · Earn Rewards · Save the Planet</div>
+            </div>
+        </div>
+        <nav>
+            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+            <a href="{{ url_for('categories') }}" class="nav-link">Categories</a>
+            <a href="{{ url_for('wallet') }}" class="nav-link nav-link-primary">Wallet</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <span class="footer-highlight">Created by:</span>
+            Department of Bioinformatics, G N Khalsa College
+        </div>
+        <div>
+            &copy; {{ 2025 }} PlastiStar · A plastic waste awareness & reward initiative
+        </div>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}PlastiStar · Home{% endblock %}
+
+{% block content %}
+<section style="display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr); gap: 1.75rem; align-items: center;">
+    <!-- Left: main text -->
+    <div>
+        <div class="pill">
+            <span class="pill-dot"></span>
+            <span>Plastic Waste Management · Rewards · Awareness</span>
+        </div>
+
+        <h1 style="margin: 1rem 0 0.5rem; font-size: 2.1rem; line-height: 1.2; color: var(--primary-dark);">
+            PlastiStar – Turning Plastic Waste into Reward Points
+        </h1>
+
+        <p style="margin: 0 0 1.25rem; max-width: 32rem; font-size: 0.97rem; line-height: 1.7;">
+            PlastiStar helps you identify, sort, and track plastic waste in your daily life.
+            Scan plastic types, learn how to dispose of them correctly, and collect reward points
+            in your digital wallet every time you make an eco-conscious choice.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <a href="{{ url_for('categories') }}"
+               style="padding: 0.6rem 1.1rem; border-radius: 999px; border: none;
+                      background: var(--primary); color: #fff; font-size: 0.9rem;
+                      font-weight: 500; cursor: pointer; display: inline-flex;
+                      align-items: center; gap: 0.35rem;">
+                Start Sorting
+                <span>→</span>
+            </a>
+
+            <a href="{{ url_for('wallet') }}"
+               style="padding: 0.6rem 1.1rem; border-radius: 999px;
+                      border: 1px solid var(--primary); font-size: 0.9rem;
+                      font-weight: 500; color: var(--primary-dark); background: transparent;">
+                View My Reward Wallet
+            </a>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem;">
+            <div>
+                <strong style="display:block; font-size: 1rem;">Scan & Learn</strong>
+                Identify plastic codes and get disposal tips instantly.
+            </div>
+            <div>
+                <strong style="display:block; font-size: 1rem;">Earn Rewards</strong>
+                Track eco-actions as points in your PlastiStar wallet.
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: card area -->
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="background: var(--card-bg); border-radius: 1rem; padding: 1rem 1.1rem;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-soft);">
+            <h2 style="margin-top: 0; margin-bottom: 0.4rem; font-size: 1.1rem; color: var(--primary-dark);">
+                App Title
+            </h2>
+            <p style="margin: 0 0 0.4rem; font-size: 0.9rem;"><strong>PlastiStar – Smart Plastic Waste Companion</strong></p>
+            <p style="margin: 0; font-size: 0.85rem; line-height: 1.6;">
+                Motto: <em>“Sort Smart. Earn Rewards. Save the Planet.”</em><br>
+                Use PlastiStar to understand plastic categories, reduce landfill burden,
+                and gamify your sustainability journey.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem;">
+            <div style="background: rgba(47,125,50,0.07); border-radius: 0.9rem; padding: 0.8rem;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary-dark);">
+                    For Users
+                </div>
+                <p style="margin: 0.2rem 0 0; font-size: 0.85rem;">
+                    Quickly understand what plastic you’re holding and how to dispose of it.
+                </p>
+            </div>
+            <div style="background: rgba(244,162,97,0.08); border-radius: 0.9rem; padding: 0.8rem;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);">
+                    For Awareness
+                </div>
+                <p style="margin: 0.2rem 0 0; font-size: 0.85rem;">
+                    A teaching tool for schools and communities to promote sustainable plastic use.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
