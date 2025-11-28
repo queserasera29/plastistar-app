@@ -28,12 +28,21 @@ CATEGORY_POINTS = {
 waste_items = []  # each item is a dict
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def home():
     """
-    PAGE 1: HOME
-    Collects user info: name, phone, email
-    Stores in session.
+    PUBLIC HOMEPAGE:
+    Shows information about PlastiStar, reward system,
+    and plastic pollution. Does NOT force registration.
+    """
+    return render_template("home.html",CATEGORY_POINTS=CATEGORY_POINTS)
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """
+    REGISTRATION PAGE:
+    Collects user info: name, phone, email, and then
+    allows the user to start using the app (categories, wallet).
     """
     if request.method == "POST":
         name = request.form.get("name", "").strip()
@@ -42,17 +51,17 @@ def home():
 
         if not name or not phone or not email:
             flash("Please fill all fields", "error")
-            return redirect(url_for("home"))
+            return redirect(url_for("register"))
 
         session["user_name"] = name
         session["user_phone"] = phone
         session["user_email"] = email
         session.setdefault("total_points", 0)
 
+        # After registration, user can start sorting plastics
         return redirect(url_for("categories"))
 
-    return render_template("home.html")
-
+    return render_template("register.html")
 
 @app.route("/categories", methods=["GET", "POST"])
 def categories():
@@ -64,7 +73,7 @@ def categories():
     - Assigns points based on category
     """
     if "user_email" not in session:
-        return redirect(url_for("home"))
+        return redirect(url_for("register"))
 
     if request.method == "POST":
         category = request.form.get("category")
@@ -127,7 +136,7 @@ def wallet():
     - List of items with category, points, QR code and photo
     """
     if "user_email" not in session:
-        return redirect(url_for("home"))
+        return redirect(url_for("register"))
 
     user_email = session["user_email"]
 

@@ -1,89 +1,210 @@
 {% extends "base.html" %}
 
-{% block title %}PlastiStar · Home{% endblock %}
+{% block title %}PlastiStar · Smart Plastic Waste Companion{% endblock %}
 
 {% block content %}
-<section style="display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr); gap: 1.75rem; align-items: center;">
-    <!-- Left: main text -->
+<div class="home-hero" style="display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2.4fr); gap:1.75rem; align-items:center;">
+    <!-- LEFT: TITLE + MOTTO + CTA -->
     <div>
         <div class="pill">
             <span class="pill-dot"></span>
-            <span>Plastic Waste Management · Rewards · Awareness</span>
+            <span>Plastic Awareness · Reward System · Sustainability</span>
         </div>
 
-        <h1 style="margin: 1rem 0 0.5rem; font-size: 2.1rem; line-height: 1.2; color: var(--primary-dark);">
-            PlastiStar – Turning Plastic Waste into Reward Points
+        <h1 style="margin:1rem 0 0.5rem; font-size:2.2rem; line-height:1.2; color:var(--primary-dark);">
+            PlastiStar – Turn Everyday Plastic into Eco-Rewards
         </h1>
 
-        <p style="margin: 0 0 1.25rem; max-width: 32rem; font-size: 0.97rem; line-height: 1.7;">
-            PlastiStar helps you identify, sort, and track plastic waste in your daily life.
-            Scan plastic types, learn how to dispose of them correctly, and collect reward points
-            in your digital wallet every time you make an eco-conscious choice.
+        <p style="margin:0 0 1.1rem; max-width:34rem; font-size:0.98rem; line-height:1.7;">
+            PlastiStar is a student-built web companion that helps you understand plastic waste,
+            make better disposal decisions, and gamify your sustainability journey with reward points.
         </p>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
-            <a href="{{ url_for('categories') }}"
-               style="padding: 0.6rem 1.1rem; border-radius: 999px; border: none;
-                      background: var(--primary); color: #fff; font-size: 0.9rem;
-                      font-weight: 500; cursor: pointer; display: inline-flex;
-                      align-items: center; gap: 0.35rem;">
-                Start Sorting
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;">
+            <a href="{{ url_for('register') }}"
+               style="padding:0.6rem 1.1rem; border-radius:999px; border:none;
+                      background:var(--primary); color:#fff; font-size:0.9rem;
+                      font-weight:500; cursor:pointer; display:inline-flex;
+                      align-items:center; gap:0.35rem;">
+                Start Earning Rewards
                 <span>→</span>
             </a>
 
-            <a href="{{ url_for('wallet') }}"
-               style="padding: 0.6rem 1.1rem; border-radius: 999px;
-                      border: 1px solid var(--primary); font-size: 0.9rem;
-                      font-weight: 500; color: var(--primary-dark); background: transparent;">
-                View My Reward Wallet
+            <a href="#rewards"
+               style="padding:0.6rem 1.1rem; border-radius:999px;
+                      border:1px solid var(--primary); font-size:0.9rem;
+                      font-weight:500; color:var(--primary-dark); background:transparent;">
+                Learn about the reward system
             </a>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem;">
-            <div>
-                <strong style="display:block; font-size: 1rem;">Scan & Learn</strong>
-                Identify plastic codes and get disposal tips instantly.
-            </div>
-            <div>
-                <strong style="display:block; font-size: 1rem;">Earn Rewards</strong>
-                Track eco-actions as points in your PlastiStar wallet.
-            </div>
-        </div>
+        <p style="font-size:0.82rem; color:#4f6f52; max-width:30rem;">
+            You can explore this page freely. Registration is only required when you want to
+            start uploading plastic items and collecting PlastiStar points.
+        </p>
     </div>
 
-    <!-- Right: card area -->
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div style="background: var(--card-bg); border-radius: 1rem; padding: 1rem 1.1rem;
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-soft);">
-            <h2 style="margin-top: 0; margin-bottom: 0.4rem; font-size: 1.1rem; color: var(--primary-dark);">
-                App Title
+    <!-- RIGHT: INFO CARD -->
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div style="background:var(--card-bg); border-radius:1rem; padding:1rem 1.1rem;
+                    box-shadow:0 10px 25px rgba(0,0,0,0.08); border:1px solid var(--border-soft);">
+            <h2 style="margin:0 0 0.4rem; font-size:1.15rem; color:var(--primary-dark);">
+                What is PlastiStar?
             </h2>
-            <p style="margin: 0 0 0.4rem; font-size: 0.9rem;"><strong>PlastiStar – Smart Plastic Waste Companion</strong></p>
-            <p style="margin: 0; font-size: 0.85rem; line-height: 1.6;">
-                Motto: <em>“Sort Smart. Earn Rewards. Save the Planet.”</em><br>
-                Use PlastiStar to understand plastic categories, reduce landfill burden,
-                and gamify your sustainability journey.
+            <p style="margin:0; font-size:0.9rem; line-height:1.7;">
+                PlastiStar is a digital tool to support plastic waste segregation and awareness.
+                Users capture photos of plastic items, classify them into categories, and earn reward
+                points in a virtual wallet for every responsible action.
             </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem;">
-            <div style="background: rgba(47,125,50,0.07); border-radius: 0.9rem; padding: 0.8rem;">
-                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary-dark);">
-                    For Users
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.75rem;">
+            <div style="background:rgba(47,125,50,0.07); border-radius:0.9rem; padding:0.8rem;">
+                <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--primary-dark);">
+                    Built For
                 </div>
-                <p style="margin: 0.2rem 0 0; font-size: 0.85rem;">
-                    Quickly understand what plastic you’re holding and how to dispose of it.
+                <p style="margin:0.25rem 0 0; font-size:0.85rem;">
+                    Students, households, and communities who want a simple entry point into
+                    plastic waste management and environmental action.
                 </p>
             </div>
-            <div style="background: rgba(244,162,97,0.08); border-radius: 0.9rem; padding: 0.8rem;">
-                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);">
-                    For Awareness
+            <div style="background:rgba(244,162,97,0.08); border-radius:0.9rem; padding:0.8rem;">
+                <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent);">
+                    Core Idea
                 </div>
-                <p style="margin: 0.2rem 0 0; font-size: 0.85rem;">
-                    A teaching tool for schools and communities to promote sustainable plastic use.
+                <p style="margin:0.25rem 0 0; font-size:0.85rem;">
+                    Make sustainability feel rewarding, visual, and easy to understand instead of abstract.
                 </p>
             </div>
         </div>
     </div>
+</div>
+
+<hr style="margin:2rem 0; border:none; border-top:1px solid var(--border-soft);">
+
+<!-- GLOBAL PLASTIC ISSUE SECTION -->
+<section id="plastic-issue" style="display:grid; grid-template-columns:minmax(0,2.4fr) minmax(0,3fr); gap:1.75rem; align-items:flex-start;">
+    <div>
+        <h2 style="font-size:1.4rem; margin-bottom:0.4rem; color:var(--primary-dark);">
+            The Global Plastic Problem
+        </h2>
+        <p style="margin:0 0 0.5rem; font-size:0.95rem; line-height:1.7;">
+            Plastic waste is one of the most pressing environmental challenges we face today.
+            A huge fraction of single-use plastics ends up in landfills, oceans, and informal dumpsites,
+            where it can persist for hundreds of years.
+        </p>
+        <ul style="margin:0.4rem 0 0; padding-left:1.1rem; font-size:0.9rem; line-height:1.6;">
+            <li>Microplastics are now found in water, soil, and even human bodies.</li>
+            <li>Improper segregation makes recycling costly and inefficient.</li>
+            <li>Awareness is still low about plastic codes and safe disposal methods.</li>
+        </ul>
+    </div>
+    <div style="background:var(--card-bg); border-radius:1rem; padding:1rem 1.1rem;
+                border:1px solid var(--border-soft); box-shadow:0 8px 20px rgba(0,0,0,0.04);">
+        <h3 style="margin-top:0; font-size:1.1rem; color:var(--primary-dark);">
+            How PlastiStar responds
+        </h3>
+        <ol style="margin:0.4rem 0 0; padding-left:1.1rem; font-size:0.9rem; line-height:1.7;">
+            <li>Helps users identify different plastic types through simple categories.</li>
+            <li>Connects each action to a reward system, reinforcing positive behaviour.</li>
+            <li>Acts as an educational tool for schools, colleges, and community drives.</li>
+        </ol>
+    </div>
+</section>
+
+<hr style="margin:2rem 0; border:none; border-top:1px solid var(--border-soft);">
+
+<!-- REWARD SYSTEM SECTION -->
+<section id="rewards" style="display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2.4fr); gap:1.75rem; align-items:flex-start;">
+    <div>
+        <h2 style="font-size:1.4rem; margin-bottom:0.4rem; color:var(--primary-dark);">
+            Reward System – How Your Eco-Actions Become Points
+        </h2>
+        <p style="margin:0 0 0.7rem; font-size:0.95rem; line-height:1.7;">
+            PlastiStar assigns a score to each plastic item you correctly identify and log.
+            Different categories of plastic correspond to different points based on their impact
+            and difficulty in recycling.
+        </p>
+        <table style="border-collapse:collapse; width:100%; max-width:420px; font-size:0.88rem;">
+            <thead>
+            <tr style="background:rgba(47,125,50,0.08);">
+                <th style="text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Plastic Type</th>
+                <th style="text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Example</th>
+                <th style="text-align:left; padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Points</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Plastic bottle</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Water / cold drink bottle</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">{{ CATEGORY_POINTS["plastic_bottle"] }}</td>
+            </tr>
+            <tr>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Plastic wrapper</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Snack or chocolate wrapper</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">{{ CATEGORY_POINTS["plastic_wrapper"] }}</td>
+            </tr>
+            <tr>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Plastic can</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Food storage container</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">{{ CATEGORY_POINTS["plastic_can"] }}</td>
+            </tr>
+            <tr>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Plastic bag</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">Carry bag, polythene</td>
+                <td style="padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-soft);">{{ CATEGORY_POINTS["plastic_bag"] }}</td>
+            </tr>
+            <tr>
+                <td style="padding:0.4rem 0.5rem;">Other plastic</td>
+                <td style="padding:0.4rem 0.5rem;">Miscellaneous plastic items</td>
+                <td style="padding:0.4rem 0.5rem;">{{ CATEGORY_POINTS["other_plastic"] }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <p style="margin:0.8rem 0 0; font-size:0.86rem; color:#4f6f52;">
+            Over time, your points in the PlastiStar wallet can be used as evidence of participation
+            in sustainability drives, school/college activities, or eco-club initiatives.
+        </p>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:1rem; padding:1rem 1.1rem;
+                border:1px solid var(--border-soft); box-shadow:0 8px 20px rgba(0,0,0,0.04);">
+        <h3 style="margin-top:0; font-size:1.1rem; color:var(--primary-dark);">
+            How PlastiStar Works – In 3 Steps
+        </h3>
+        <ol style="margin:0.4rem 0 0; padding-left:1.1rem; font-size:0.9rem; line-height:1.7;">
+            <li>Explore this homepage to understand why plastic waste matters.</li>
+            <li>Click <strong>“Start Earning Rewards”</strong> to register.</li>
+            <li>Use the <em>Categories</em> page to upload plastic items and track your points in the <em>Wallet</em>.</li>
+        </ol>
+        <a href="{{ url_for('register') }}"
+           style="display:inline-block; margin-top:1rem; padding:0.55rem 1rem;
+                  border-radius:999px; background:var(--primary); color:#fff;
+                  font-size:0.9rem; font-weight:500; text-decoration:none;">
+            Register now to begin →
+        </a>
+    </div>
+</section>
+
+<hr style="margin:2rem 0; border:none; border-top:1px solid var(--border-soft);">
+
+<!-- ABOUT & CREDITS -->
+<section id="about">
+    <h2 style="font-size:1.4rem; margin-bottom:0.4rem; color:var(--primary-dark);">
+        About PlastiStar & Creators
+    </h2>
+    <p style="margin:0 0 0.5rem; font-size:0.95rem; line-height:1.7;">
+        PlastiStar is an educational and awareness-oriented web application designed to demonstrate how
+        technology, data and behavioural nudges can help address the challenge of plastic waste.
+    </p>
+    <p style="margin:0 0 0.3rem; font-size:0.9rem; line-height:1.7;">
+        <strong>Concept & Development:</strong><br>
+        Department of Bioinformatics, G N Khalsa College.
+    </p>
+    <p style="margin:0; font-size:0.9rem; line-height:1.7;">
+        The application is intended as a prototype for academic projects, workshops, and sustainability
+        events, and can be extended with advanced features like image-based plastic detection or
+        integration with real-world reward programs.
+    </p>
 </section>
 {% endblock %}
