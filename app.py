@@ -185,7 +185,7 @@ def wallet():
     """
     PAGE 3: WALLET
     Shows:
-    - Total star points
+    - Total reward points (from session)
     - List of items with category, points, QR code and photo
     """
     if "user_email" not in session:
@@ -193,16 +193,11 @@ def wallet():
 
     user_email = session["user_email"]
 
-    # Filter items belonging to this user
+    # Filter items belonging to this user for display
     user_items = [item for item in waste_items if item["user_email"] == user_email]
-    total_points = sum(item["points"] for item in user_items)
 
-    # Keep session in sync
-    session["total_points"] = total_points
-
-    # Convert numeric points to "stars" for each item (string of ★)
-    for item in user_items:
-        item["stars"] = "★" * item["points"]  # careful: many stars if points big
+    # Use session as the single source of truth for total points
+    total_points = session.get("total_points", 0)
 
     return render_template(
         "wallet.html",
@@ -210,6 +205,7 @@ def wallet():
         total_points=total_points,
         items=user_items,
     )
+
 @app.route("/history")
 def history():
     """
