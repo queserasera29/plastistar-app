@@ -70,13 +70,6 @@ The application is deployed using Render:
 
 👉 https://plastistar-app.onrender.com
 
-🔐 Admin Access
-
-To view user registrations and logged data:
-
-/admin
-
-(Optional: secured using an admin key in production)
 
 📊 Data Handling
 User registrations are stored in users.csv
