@@ -8,6 +8,16 @@ import csv
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import qrcode
+import csv
+from datetime import datetime
+...
+DATA_FOLDER = os.path.join("data")
+os.makedirs(DATA_FOLDER, exist_ok=True)
+
+USERS_FILE = os.path.join(DATA_FOLDER, "users.csv")
+HISTORY_FILE = os.path.join(DATA_FOLDER, "waste_history.csv")
+
+ADMIN_KEY = os.environ.get("PLASTISTAR_ADMIN_KEY", "plastistar-admin")  # simple protection
 
 app = Flask(__name__)
 
@@ -76,14 +86,33 @@ def register():
             flash("Please fill all fields", "error")
             return redirect(url_for("register"))
 
+        # Save in session
         session["user_name"] = name
         session["user_phone"] = phone
         session["user_email"] = email
         session.setdefault("total_points", 0)
 
-        # After registration, user can start sorting plastics
+        # Append registration to CSV
+        try:
+            file_exists = os.path.exists(USERS_FILE)
+            with open(USERS_FILE, "a", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow(["timestamp", "name", "phone", "email"])
+                writer.writerow([
+                    datetime.now().isoformat(timespec="seconds"),
+                    name,
+                    phone,
+                    email,
+                ])
+        except Exception as e:
+            print("Failed to write to users file:", e)
+
+        # After successful registration, go to categories
         return redirect(url_for("categories"))
 
+    # IMPORTANT: this handles GET /register
+    # and ALWAYS returns a response
     return render_template("register.html")
 
 @app.route("/categories", methods=["GET", "POST"])
@@ -242,3 +271,34 @@ def history():
 if __name__ == "__main__":
     # Debug for development; for deployment, use a proper server
     app.run(host="0.0.0.0", port=5000, debug=True)
+@app.route("/admin")
+def admin_dashboard():
+    """
+    ADMIN VIEW:
+    - Shows all registered users
+    - Shows all logged plastic items
+    """
+    # Simple check: ?key=yourpassword
+    key = request.args.get("key")
+    if key != ADMIN_KEY:
+        return "Unauthorized. Add ?key=YOUR_ADMIN_KEY to the URL.", 401
+
+    # Read users
+    users = []
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            users = list(reader)
+
+    # Read item history
+    items = []
+    if os.path.exists(HISTORY_FILE):
+        with open(HISTORY_FILE, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+
+    return render_template(
+        "admin.html",
+        users=users,
+        items=items,
+    )
