@@ -1,104 +1,128 @@
-🌿 PlastiStar
+# 🌿 PlastiStar  
+### AI-Enabled Intelligent Waste System for Sustainable Plastic Management
 
-AI-Enabled Intelligent Waste System for Sustainable Plastic Management
+PlastiStar is a web-based application that promotes responsible plastic waste disposal through awareness, classification, and reward-based engagement. Users can log plastic items, generate QR codes for traceability, and earn reward points while contributing to sustainability.
 
-PlastiStar is a web-based application designed to promote responsible plastic waste disposal through awareness, classification, and reward-based engagement. The platform allows users to log plastic items, generate QR codes for traceability, and earn reward points while contributing to sustainable practices.
+---
 
-🚀 Features
-♻️ Plastic Waste Logging
-Upload images of plastic items and classify them into categories.
-🔍 Category-Based Scoring System
-Assigns reward points based on type of plastic waste.
-🔗 QR Code Generation
-Generates a unique QR code for each logged item for traceability.
-⭐ Reward Wallet System
-Tracks total points earned by users for sustainable actions.
-📊 History Tracking
-Displays previously logged items with category, image, QR, and points.
-🧑‍💻 Admin Dashboard
-View all user registrations and logged data in tabular format.
-🧠 Concept
+## 🚀 Features
 
-Plastic waste management is a growing global issue. PlastiStar bridges the gap between awareness and action by:
+- Plastic waste logging via image upload  
+- Category-based reward point system  
+- Unique QR code generation for each item  
+- User wallet to track reward points  
+- History tracking of logged items  
+- Admin dashboard to view registrations and activity  
 
-Encouraging users to actively log plastic waste
-Making sustainability engaging through rewards
-Providing traceability using QR codes
-Creating a data-driven model for waste tracking
-🛠️ Tech Stack
-Backend: Python, Flask
-Frontend: HTML5, CSS3, Jinja2
-Data Storage: CSV-based storage
-Libraries Used:
-Flask
-qrcode
-Pillow
-📂 Project Structure
+---
+
+## 🧠 Concept
+
+PlastiStar bridges the gap between awareness and action in plastic waste management by:
+- Encouraging active user participation  
+- Making sustainability engaging through rewards  
+- Providing traceability using QR codes  
+- Creating a simple data-driven waste tracking system  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend:** Python (Flask)  
+- **Frontend:** HTML5, CSS3, Jinja2  
+- **Data Storage:** CSV files  
+
+**Libraries Used:** Flask, qrcode, Pillow  
+
+---
+## 📂 Project Structure
+
+
 plastistar_app/
-│
 ├── app.py
 ├── requirements.txt
 ├── data/
-│   ├── users.csv
-│   └── waste_history.csv
-│
+│ ├── users.csv
+│ └── waste_history.csv
 ├── static/
-│   ├── uploads/
-│   └── qr/
-│
+│ ├── uploads/
+│ └── qr/
 ├── templates/
-│   ├── base.html
-│   ├── home.html
-│   ├── register.html
-│   ├── categories.html
-│   ├── wallet.html
-│   ├── history.html
-│   └── admin.html
-⚙️ Installation & Setup
-Clone the repository:
-git clone https://github.com/your-username/plastistar-app.git
+│ ├── base.html
+│ ├── home.html
+│ ├── register.html
+│ ├── categories.html
+│ ├── wallet.html
+│ ├── history.html
+│ └── admin.html
+
+--
+
+## ⚙️ Installation & Setup
+
+1. Clone the repository:
+
+git clone https://github.com/queserasera29/plastistar-app.git
+
 cd plastistar_app
-Install dependencies:
+
+
+2. Install dependencies:
+
 pip install -r requirements.txt
-Run the application:
+
+
+3. Run the application:
+
 python app.py
-Open in browser:
+
+
+4. Open in browser:
+
 http://127.0.0.1:5000
-🌐 Deployment
-
-The application is deployed using Render:
-
-👉 https://plastistar-app.onrender.com
 
 
-📊 Data Handling
-User registrations are stored in users.csv
-Logged plastic items are stored in waste_history.csv
-Data includes:
-Timestamp
-User details
-Category
-Uploaded image
-QR code
-Reward points
-📌 Future Scope
-AI-based plastic detection using image classification
-Integration with real databases (PostgreSQL / MongoDB)
-Mobile application version
-Real-world reward redemption system
-Analytics dashboard for sustainability insights
+---
 
-👩‍🔬 Developed By
+## 🌐 Deployment
+
+https://plastistar-app.onrender.com
+
+---
+
+## 📊 Data Handling
+
+- Registrations stored in `users.csv`  
+- Logged items stored in `waste_history.csv`  
+
+Includes:
+- Timestamp  
+- User details  
+- Category  
+- Image  
+- QR code  
+- Reward points  
+
+---
+
+## 📌 Future Scope
+
+- AI-based plastic detection  
+- Database integration (PostgreSQL/MongoDB)  
+- Mobile app development  
+- Reward redemption system  
+- Analytics dashboard  
+
+---
+
+## 👩‍🔬 Developed By
+
 Ranjana Parab | Mabitha Mani
-Department of Bioinformatics
-Guru Nanak Khalsa College
+Department of Bioinformatics  
+Guru Nanak Khalsa College  
 
-🌍 License
+---
 
-This project is for academic and research purposes.
+## 🌍 License
 
-If you want, I can next:
-
-Add badges (GitHub, Python, Flask)
-Create a cool banner/logo for README
-Or make it more startup/pitch style instead of academic
+Academic and research use only.
